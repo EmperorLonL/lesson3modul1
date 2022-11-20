@@ -1,8 +1,7 @@
 class Parent{
-    constructor(x, y, index) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.index = index;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -44,7 +43,7 @@ class Parent{
         return found;
     }
 
-    newCellfunc (char1, char2, char3) {
+    newCellfunc (char1, char2, char3) { 
         let emptyCells1 = this.chooseCell(char1);
         let emptyCells2 = this.chooseCell(char2);
         let emptyCells3 = this.chooseCell(char3);
@@ -62,4 +61,29 @@ class Parent{
                 }
             }
     }
+
+    mul(newCell, energy, index, Arr1, Arr2) {  
+        if (newCell && this.energy >= energy) {
+            let newX = newCell[0];
+            let newY = newCell[1];
+            matrix[newY][newX] = index;
+
+            for (var i in Arr1) {
+                if (newX == Arr1[i].x && newY == Arr1[i].y) {
+                    Arr1.splice(i, 1);
+                    break;
+                }
+            }
+            for (var i in Arr2) {
+                if (newX == Arr2[i].x && newY == Arr2[i].y) {
+                    Arr2.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+
 }

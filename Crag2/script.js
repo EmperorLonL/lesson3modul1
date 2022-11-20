@@ -10,7 +10,7 @@ function setup() {
     for (let i = 0; i < 50; i++) {
         matrix.push([])
         for (let j = 0; j < 50; j++) {
-            let c = random([0, 0, 0, 0, 1, 2 /*2, 2, 2, 3, 4*/]);
+            let c = random([0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 4]);
             matrix[i].push(c);
         }
     }
@@ -22,19 +22,19 @@ function setup() {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] === 1) {
-                const gr = new Grass(j, i, 1);
+                const gr = new Grass(j, i);
                 grassArr.push(gr);
             }
             else if (matrix[i][j] === 2) {
-                const eater = new GrassEater(j, i, 2);
+                const eater = new GrassEater(j, i);
                 grassEaterArr.push(eater);
             }
             else if (matrix[i][j] === 3) {
-                const gishatich = new Gishatich(j, i, 3);
+                const gishatich = new Gishatich(j, i);
                 gishatichArr.push(gishatich);
             }
             else if (matrix[i][j] === 4) {
-                const mard = new Mard(j, i, 4);
+                const mard = new Mard(j, i);
                 mardArr.push(mard);
             }
         }
@@ -73,22 +73,30 @@ function draw() {
     for (let i in grassArr) {
         grassArr[i].mul();
     }
-    // for (let i in gishatichArr) {
-    //     gishatichArr[i].mul();
-    //     gishatichArr[i].eat();
-    //     gishatichArr[i].die();
+    for (let i in gishatichArr) {
+        gishatichArr[i].mul();
+        gishatichArr[i].eat();
+        gishatichArr[i].die();
 
-    // }
+    }
+
+
+
+
     for (let i in grassEaterArr) {
         grassEaterArr[i].mul();
         grassEaterArr[i].eat();
         grassEaterArr[i].die();
     }
-    // for (let i in mardArr) {
-    //     mardArr[i].mul();
-    //     mardArr[i].eat();
-    //     mardArr[i].die();
-    // }
+
+
+
+
+    for (let i in mardArr) {
+        mardArr[i].mul();
+        mardArr[i].eat();
+        mardArr[i].die();
+    }
 
 
 }

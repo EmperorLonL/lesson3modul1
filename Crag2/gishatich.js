@@ -1,19 +1,7 @@
-class Gishatich {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.energy = 5;
-        this.index = index;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+class Gishatich extends Parent {
+    constructor(x, y) {
+        super(x, y);
+        this.energy = 2;
     }
 
 
@@ -56,7 +44,6 @@ class Gishatich {
         let newCell = random(emptyCells);
 
         if (newCell && this.energy == 10) {
-            this.energy = 5;
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 3;

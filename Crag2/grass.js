@@ -1,6 +1,6 @@
 class Grass extends Parent{
-    constructor(x, y, index) {
-        super(x, y, index);
+    constructor(x, y) {
+        super(x, y);
         this.multiply = 0;
     }
 
@@ -18,5 +18,4 @@ class Grass extends Parent{
             this.multiply = 0;
         }
     }
-
 }

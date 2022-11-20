@@ -1,14 +1,12 @@
 class GrassEater extends Parent{
-    constructor(x, y, index) {
-        super(x, y, index);
-        this.n = 0;
-        this.k = 0;
+    constructor(x, y) {
+        super(x, y);
+        this.energy = 2;
     }
 
     mul() {
         let newCell = super.newCellfunc(0, 1);
-        if (newCell && this.n>=5) {
-            this.n = 0;
+        if (newCell && this.energy>=4) {
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 2;
@@ -19,17 +17,26 @@ class GrassEater extends Parent{
                     break;
                 }
             }
+
             let newGrassEater = new GrassEater(newX, newY, 2);
             grassEaterArr.push(newGrassEater);
         }
     }
 
+    // mul(){
+    //     let newCell = super.newCellfunc(0, 1);
+    //     console.log(newCell);
+    //     super.mul(newCell, 4, 2, grassArr);
+    //     let newGrassEater = new GrassEater(newCell[0], newCell[1]);
+    //     grassEaterArr.push(newGrassEater);
+    // }
+
 
     eat() {
         let newCell = super.newCellfunc(1);
         if (newCell) {
-            if(this.n<=5){
-                this.n++;
+            if(this.energy<5){
+                this.energy++;
             }
             let newX = newCell[0];
             let newY = newCell[1];
@@ -43,16 +50,14 @@ class GrassEater extends Parent{
                     break;
                 }
             }
-            this.k++;
         }
         else{
             this.move()
-            this.n--;
         }
     }
 
     die() {
-        if (this.k == -5) {
+        if (this.energy<=0) {
             super.die(grassEaterArr);
         }
     }
@@ -60,8 +65,8 @@ class GrassEater extends Parent{
     move() { 
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
-        if(this.k>=-5){
-            this.k--;
+        if(this.energy>0){
+            this.energy--;
         }
         if (newCell) {
             let newX = newCell[0];
